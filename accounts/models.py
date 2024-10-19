@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from .managers import managers
+from .managers import UserManager
+
 
 class User(AbstractBaseUser):
     email = models.EmailField(max_length=250, unique=True)
@@ -12,7 +13,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'phone_number'  # Authenticate in login
-    REQUIRED_FIELDS = ['email']  # just it uses in createsuperuser
+    REQUIRED_FIELDS = ['email', 'full_name']  # just it uses in createsuperuser
 
     def __str__(self):
         return self.email
