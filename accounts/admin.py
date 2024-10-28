@@ -7,7 +7,7 @@ from django.contrib.auth.models import Group
 
 @admin.register(OtpCode)
 class OtpCodeAdmin(admin.ModelAdmin):
-    list_display = ('phone', 'code', 'created')
+    list_display = ('phone_number', 'code', 'created')
 
 
 class UserAdmin(BaseUserAdmin):
