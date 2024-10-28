@@ -40,3 +40,7 @@ class UserRegistrations(forms.Form):
     full_name = forms.CharField(label='full name')
     phone = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput) #hide the password
+
+
+class VerifyCodeForm(forms.Form):
+    code = forms.IntegerField()
