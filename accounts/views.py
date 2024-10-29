@@ -3,17 +3,16 @@ from django.views import View
 from accounts.forms import UserRegistrationsForm, VerifyCodeForm
 import random
 from utils import send_otp_code
-from accounts.models import OtpCode
+from accounts.models import OtpCode, User
 from django.contrib import messages
-from .models import User
 
 
 class UserRegisterView(View):
     form_class = UserRegistrationsForm
-
+    template_name = 'accounts/register.html'
     def get(self, request):
         form = self.form_class
-        return render(request, 'accounts/register.html', {'from': form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -29,7 +28,7 @@ class UserRegisterView(View):
             }
             messages.success(request, 'we sent you the code', 'success')
             return redirect('accounts:verify_code')
-        return redirect('home:home')
+        return render(request, self.template_name, {'form': form})
 
 
 class UserRegisterVerifyCodeView(View):
