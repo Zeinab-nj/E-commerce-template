@@ -39,7 +39,7 @@ class UserRegistrationsForm(forms.Form):
     email = forms.EmailField()
     full_name = forms.CharField(label='full name')
     phone = forms.CharField(max_length=11)
-    password = forms.CharField(widget=forms.PasswordInput) #hide the password
+    password = forms.CharField(widget=forms.PasswordInput)  # hide the password
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -58,3 +58,8 @@ class UserRegistrationsForm(forms.Form):
 
 class VerifyCodeForm(forms.Form):
     code = forms.IntegerField()
+
+
+class UserLoginForm(forms.Form):
+    phone_number = forms.CharField(max_length=11)
+    password = forms.CharField(widget=forms.PasswordInput)
